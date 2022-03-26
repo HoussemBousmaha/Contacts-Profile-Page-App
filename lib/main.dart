@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const HelloFlutter());
+void main() => runApp(const MyApp());
 
-class HelloFlutter extends StatefulWidget {
-  const HelloFlutter({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<HelloFlutter> createState() => _HelloFlutterState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-String englishGreeting = 'Hello Flutter!';
-String spanishGreeting = 'This is my text!';
-
-class _HelloFlutterState extends State<HelloFlutter> {
-  String displayText = englishGreeting;
-
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,8 +29,8 @@ class _HelloFlutterState extends State<HelloFlutter> {
               children: [
                 SizedBox(
                   width: double.infinity,
-                  child: Image.network(
-                    'https://github.com/HoussemBousmaha/CustomContacts/blob/main/lib/profile_image.jpg?raw=true',
+                  child: Image.asset(
+                    'lib/profile_picture.jpg',
                     height: 250,
                     fit: BoxFit.cover,
                   ),
