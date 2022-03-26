@@ -33,10 +33,32 @@ class _HelloFlutterState extends State<HelloFlutter> {
             Column(
               children: [
                 SizedBox(
-                  height: 250,
                   width: double.infinity,
-                  child: Image.asset('lib/profile_image.jpg'),
+                  child: Image.network(
+                    'https://github.com/HoussemBousmaha/CustomContacts/blob/main/lib/profile_image.jpg?raw=true',
+                    height: 250,
+                    fit: BoxFit.cover,
+                  ),
                 ),
+                // when the width value is not defined
+                // it takes the value of its parent width element.
+                // (the column which takes double.infinity)
+                SizedBox(
+                  height: 60,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          'Houssem Bousmaha',
+                          style: TextStyle(fontSize: 30),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Divider(color: Colors.grey),
               ],
             ),
           ],
