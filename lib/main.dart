@@ -28,7 +28,19 @@ class _HelloFlutterState extends State<HelloFlutter> {
           backgroundColor: Colors.white,
           elevation: 3,
         ),
-        body: Container(),
+        body: ListView(
+          children: [
+            Column(
+              children: [
+                SizedBox(
+                  height: 250,
+                  width: double.infinity,
+                  child: Image.asset('lib/profile_image.jpg'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
