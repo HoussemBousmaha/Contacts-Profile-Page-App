@@ -54,11 +54,46 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
                 const Divider(color: Colors.grey),
+                Container(
+                  margin: const EdgeInsets.only(top: 8, bottom: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const [
+                      CustomButton(Icons.call, 'Call'),
+                      CustomButton(Icons.message, 'Text'),
+                      CustomButton(Icons.video_call, 'Video'),
+                      CustomButton(Icons.email, 'Email'),
+                      CustomButton(Icons.directions, 'Directions'),
+                      CustomButton(Icons.attach_money, 'Pay'),
+                    ],
+                  ),
+                ),
               ],
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  const CustomButton(this.icon, this.title, {Key? key}) : super(key: key);
+
+  final IconData icon;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        IconButton(
+          icon: Icon(icon),
+          color: Colors.indigo.shade800,
+          onPressed: () {},
+        ),
+        Text(title),
+      ],
     );
   }
 }
