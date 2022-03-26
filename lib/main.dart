@@ -68,6 +68,33 @@ class _MyAppState extends State<MyApp> {
                     ],
                   ),
                 ),
+                const Divider(color: Colors.grey),
+                const CustomListTile(
+                  leadingIcon: Icons.phone,
+                  trailingIcon: Icons.message,
+                  title: '0540998175',
+                  subtitle: 'Mobile',
+                ),
+                const CustomListTile(
+                  leadingIcon: null,
+                  trailingIcon: Icons.message,
+                  title: '041730531',
+                  subtitle: 'Mobile',
+                ),
+                const Divider(color: Colors.grey),
+                const CustomListTile(
+                  leadingIcon: Icons.email,
+                  trailingIcon: null,
+                  title: 'HoussemBousmaha@gmail.com',
+                  subtitle: 'work',
+                ),
+                const Divider(color: Colors.grey),
+                const CustomListTile(
+                  leadingIcon: Icons.location_history,
+                  trailingIcon: Icons.directions,
+                  title: 'hai akid lotfi',
+                  subtitle: 'home',
+                ),
               ],
             ),
           ],
@@ -94,6 +121,42 @@ class CustomButton extends StatelessWidget {
         ),
         Text(title),
       ],
+    );
+  }
+}
+
+class CustomListTile extends StatelessWidget {
+  const CustomListTile({
+    Key? key,
+    required this.leadingIcon,
+    required this.trailingIcon,
+    required this.title,
+    required this.subtitle,
+  }) : super(key: key);
+
+  final IconData? leadingIcon;
+  final IconData? trailingIcon;
+  final String title, subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: IconButton(
+        icon: Icon(leadingIcon),
+        color: Colors.indigo.shade500,
+        onPressed: () {},
+      ),
+      title: Text(
+        title,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
+      subtitle: Text(subtitle),
+      trailing: IconButton(
+        icon: Icon(trailingIcon),
+        color: Colors.indigo.shade500,
+        onPressed: () {},
+      ),
     );
   }
 }
