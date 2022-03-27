@@ -9,13 +9,26 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+enum APP_THEME { light, dark }
+
 class _MyAppState extends State<MyApp> {
+  var currentTheme = APP_THEME.light;
+
+  void toggleTheme() {
+    setState(() {
+      currentTheme == APP_THEME.dark ? currentTheme = APP_THEME.light : currentTheme = APP_THEME.dark;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: MyAppTheme.appThemeLight(),
       // Removing debug banner
       debugShowCheckedModeBanner: false,
+
+      // Switch between light and dark themes.
+      theme: currentTheme == APP_THEME.dark ? MyAppTheme.appThemeDark() : MyAppTheme.appThemeLight(),
+
       // Scaffold widget as home
       home: Scaffold(
         appBar: AppBar(
@@ -102,6 +115,10 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
         ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.threesixty),
+          onPressed: toggleTheme,
+        ),
       ),
     );
   }
@@ -169,10 +186,45 @@ class MyAppTheme {
       iconTheme: IconThemeData(
         color: Colors.indigo.shade600,
       ),
+
+      // floatingActionButtonTheme for light mode.
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        //White background
+        backgroundColor: Colors.white,
+
+        //Black plus (+) sign for FAB
+        foregroundColor: Colors.black,
+      ),
     );
   }
 
-  static ThemeData appThemeDart() {
-    return ThemeData();
+  static ThemeData appThemeDark() {
+    return ThemeData(
+      // Define the default brightness and colors for the overall app.
+      brightness: Brightness.dark,
+
+      //Theme for app bar
+      appBarTheme: const AppBarTheme(
+        //AppBar's background color is dark this time
+        color: Colors.black,
+
+        //Light color for the app bar's icons
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+
+      //App's icons are colored in orange color
+      iconTheme: const IconThemeData(
+        color: Colors.orange,
+      ),
+
+      // floatingActionButtonTheme for dark mode.
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        //dark background for FAB
+        backgroundColor: Colors.black,
+
+        //White plus (+) sign for FAB
+        foregroundColor: Colors.white,
+      ),
+    );
   }
 }
