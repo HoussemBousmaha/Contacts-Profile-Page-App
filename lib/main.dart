@@ -13,15 +13,31 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        // Define the default brightness and colors for the overall app.
+        brightness: Brightness.light,
+
+        //Defines theme for AppBar
+        appBarTheme: const AppBarTheme(
+          color: Colors.white,
+
+          //Theme for icons used in AppBar
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+        ),
+
+        //Theme for icons used in the app
+        iconTheme: IconThemeData(color: Colors.indigo.shade600),
+      ),
       // Removing debug banner
       debugShowCheckedModeBanner: false,
       // Scaffold widget as home
       home: Scaffold(
         appBar: AppBar(
-          leading: IconButton(icon: const Icon(Icons.arrow_back, color: Colors.black), onPressed: () {}),
-          actions: [IconButton(icon: const Icon(Icons.star_border, color: Colors.black), onPressed: () {})],
-          backgroundColor: Colors.white,
-          elevation: 3,
+          leading: IconButton(icon: const Icon(Icons.arrow_back), onPressed: () {}),
+          actions: [IconButton(icon: const Icon(Icons.star_border), onPressed: () {})],
+          elevation: 0,
         ),
         body: ListView(
           children: [
@@ -55,17 +71,20 @@ class _MyAppState extends State<MyApp> {
                 ),
                 const Divider(color: Colors.grey),
                 Container(
-                  margin: const EdgeInsets.only(top: 8, bottom: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
-                      CustomButton(Icons.call, 'Call'),
-                      CustomButton(Icons.message, 'Text'),
-                      CustomButton(Icons.video_call, 'Video'),
-                      CustomButton(Icons.email, 'Email'),
-                      CustomButton(Icons.directions, 'Directions'),
-                      CustomButton(Icons.attach_money, 'Pay'),
-                    ],
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: Theme(
+                    data: ThemeData(iconTheme: const IconThemeData(color: Colors.blue)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        CustomButton(Icons.call, 'Call'),
+                        CustomButton(Icons.message, 'Text'),
+                        CustomButton(Icons.video_call, 'Video'),
+                        CustomButton(Icons.email, 'Email'),
+                        CustomButton(Icons.directions, 'Directions'),
+                        CustomButton(Icons.attach_money, 'Pay'),
+                      ],
+                    ),
                   ),
                 ),
                 const Divider(color: Colors.grey),
@@ -114,11 +133,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        IconButton(
-          icon: Icon(icon),
-          color: Colors.indigo.shade800,
-          onPressed: () {},
-        ),
+        IconButton(icon: Icon(icon), onPressed: () {}),
         Text(title),
       ],
     );
@@ -141,22 +156,10 @@ class CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: IconButton(
-        icon: Icon(leadingIcon),
-        color: Colors.indigo.shade500,
-        onPressed: () {},
-      ),
-      title: Text(
-        title,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-      ),
+      leading: IconButton(icon: Icon(leadingIcon), color: Theme.of(context).iconTheme.color, onPressed: () {}),
+      title: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
       subtitle: Text(subtitle),
-      trailing: IconButton(
-        icon: Icon(trailingIcon),
-        color: Colors.indigo.shade500,
-        onPressed: () {},
-      ),
+      trailing: IconButton(icon: Icon(trailingIcon), color: Theme.of(context).iconTheme.color, onPressed: () {}),
     );
   }
 }
