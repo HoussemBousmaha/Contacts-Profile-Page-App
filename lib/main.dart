@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+import 'models/themes.dart';
+import 'widgets/custom_button.dart';
+import 'widgets/custom_list_tile.dart';
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+void main() => runApp(const ContactPageApp());
+
+class ContactPageApp extends StatefulWidget {
+  const ContactPageApp({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<ContactPageApp> createState() => _ContactPageAppState();
 }
 
 enum APP_THEME { light, dark }
 
-class _MyAppState extends State<MyApp> {
+class _ContactPageAppState extends State<ContactPageApp> {
   var currentTheme = APP_THEME.light;
 
   void toggleTheme() {
@@ -23,6 +27,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Contacts Profile Page',
+
       // Removing debug banner
       debugShowCheckedModeBanner: false,
 
@@ -119,111 +125,6 @@ class _MyAppState extends State<MyApp> {
           child: const Icon(Icons.threesixty),
           onPressed: toggleTheme,
         ),
-      ),
-    );
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  const CustomButton(this.icon, this.title, {Key? key}) : super(key: key);
-
-  final IconData icon;
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        IconButton(icon: Icon(icon), onPressed: () {}),
-        Text(title),
-      ],
-    );
-  }
-}
-
-class CustomListTile extends StatelessWidget {
-  const CustomListTile({
-    Key? key,
-    required this.leadingIcon,
-    required this.trailingIcon,
-    required this.title,
-    required this.subtitle,
-  }) : super(key: key);
-
-  final IconData? leadingIcon;
-  final IconData? trailingIcon;
-  final String title, subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: IconButton(icon: Icon(leadingIcon), color: Theme.of(context).iconTheme.color, onPressed: () {}),
-      title: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
-      subtitle: Text(subtitle),
-      trailing: IconButton(icon: Icon(trailingIcon), color: Theme.of(context).iconTheme.color, onPressed: () {}),
-    );
-  }
-}
-
-class MyAppTheme {
-  static ThemeData appThemeLight() {
-    return ThemeData(
-      // Define the default brightness and colors for the overall app.
-      brightness: Brightness.light,
-
-      // Defines theme for AppBar
-      appBarTheme: const AppBarTheme(
-        // AppBar's color.
-        color: Colors.white,
-
-        // Theme for AppBar's icons.
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
-      ),
-
-      // Theme for app's icons.
-      iconTheme: IconThemeData(
-        color: Colors.indigo.shade600,
-      ),
-
-      // floatingActionButtonTheme for light mode.
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        //White background
-        backgroundColor: Colors.white,
-
-        //Black plus (+) sign for FAB
-        foregroundColor: Colors.black,
-      ),
-    );
-  }
-
-  static ThemeData appThemeDark() {
-    return ThemeData(
-      // Define the default brightness and colors for the overall app.
-      brightness: Brightness.dark,
-
-      //Theme for app bar
-      appBarTheme: const AppBarTheme(
-        //AppBar's background color is dark this time
-        color: Colors.black,
-
-        //Light color for the app bar's icons
-        iconTheme: IconThemeData(color: Colors.white),
-      ),
-
-      //App's icons are colored in orange color
-      iconTheme: const IconThemeData(
-        color: Colors.orange,
-      ),
-
-      // floatingActionButtonTheme for dark mode.
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        //dark background for FAB
-        backgroundColor: Colors.black,
-
-        //White plus (+) sign for FAB
-        foregroundColor: Colors.white,
       ),
     );
   }
