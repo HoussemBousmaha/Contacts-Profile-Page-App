@@ -13,23 +13,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        // Define the default brightness and colors for the overall app.
-        brightness: Brightness.light,
-
-        //Defines theme for AppBar
-        appBarTheme: const AppBarTheme(
-          color: Colors.white,
-
-          //Theme for icons used in AppBar
-          iconTheme: IconThemeData(
-            color: Colors.black,
-          ),
-        ),
-
-        //Theme for icons used in the app
-        iconTheme: IconThemeData(color: Colors.indigo.shade600),
-      ),
+      theme: MyAppTheme.appThemeLight(),
       // Removing debug banner
       debugShowCheckedModeBanner: false,
       // Scaffold widget as home
@@ -161,5 +145,34 @@ class CustomListTile extends StatelessWidget {
       subtitle: Text(subtitle),
       trailing: IconButton(icon: Icon(trailingIcon), color: Theme.of(context).iconTheme.color, onPressed: () {}),
     );
+  }
+}
+
+class MyAppTheme {
+  static ThemeData appThemeLight() {
+    return ThemeData(
+      // Define the default brightness and colors for the overall app.
+      brightness: Brightness.light,
+
+      // Defines theme for AppBar
+      appBarTheme: const AppBarTheme(
+        // AppBar's color.
+        color: Colors.white,
+
+        // Theme for AppBar's icons.
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+      ),
+
+      // Theme for app's icons.
+      iconTheme: IconThemeData(
+        color: Colors.indigo.shade600,
+      ),
+    );
+  }
+
+  static ThemeData appThemeDart() {
+    return ThemeData();
   }
 }
